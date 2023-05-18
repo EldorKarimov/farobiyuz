@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     #packages
     'rest_framework',
     'drf_yasg',
+    'corsheaders',
 ]
 
 SWAGGER_SETTINGS = {
@@ -52,6 +53,7 @@ SWAGGER_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +62,32 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True  # Allow requests from all origins
+# OR
+CORS_ORIGIN_WHITELIST = [
+    'http://example.com',
+    'https://example.com',
+]  # Allow requests from specific origins
+
+# Example settings
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+]
+CORS_EXPOSE_HEADERS = [
+    'Content-Disposition',
+]
+# ...and more
+
 
 ROOT_URLCONF = 'config.urls'
 
